@@ -27,21 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
         let exercise2Name = '';
         let exercise3Name = '';
         let selectedWorkout = workoutSelect.value;
-       if (selectedWorkout === 'workoutA') {
+       if (selectedWorkout === 'workout A') {
             exercise1Name = 'Squat';
             exercise2Name = 'Bench Press';
             exercise3Name = 'Barbell Row';
-        } else if (selectedWorkout === 'workoutB') {
+        } else if (selectedWorkout === 'workout B') {
             exercise1Name = 'Squat';
             exercise2Name = 'Overhead press';
             exercise3Name = 'Deadlift';
         }
-
-        //const selectedWorkout = workoutSelect.value;
-        //const workoutName = selectedWorkout === 'workoutA' ? 'Workout A' : 'Workout B';
-        //const exerciseNames = selectedWorkout === 'workoutA' ?
-        //    ['Squat', 'Bench Press', 'Barbell Row'] :
-        //    ['Squat', 'Overhead Press', 'Deadlift'];
 
         logWorkout(selectedWorkout, exercise1Name, exercise2Name, exercise3Name, exercise1, exercise2, exercise3);
         getLatestWorkoutValues();
@@ -53,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     workoutSelect.addEventListener('change', function() {
         const selectedWorkout = workoutSelect.value;
-        if (selectedWorkout === 'workoutA') {
+        if (selectedWorkout === 'workout A') {
             setExerciseLabels('Squat', 'Bench Press', 'Barbell Row');
-        } else if (selectedWorkout === 'workoutB') {
+        } else if (selectedWorkout === 'workout B') {
             setExerciseLabels('Squat', 'Overhead Press', 'Deadlift');
         }
     });
@@ -122,27 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const exercise2 = latestWorkout.exercise2;
             const exercise3 = latestWorkout.exercise3;
             
-            document.querySelector('li[class="seuraavaTreeni1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
-            document.querySelector('li[class="seuraavaTreeni2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
-            document.querySelector('li[class="seuraavaTreeni3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
-
-            return {
-                workoutName,
-                exercise1Name,
-                exercise2Name,
-                exercise3Name,
-                exercise1,
-                exercise2,
-                exercise3
-
-                
-            };
-        } else {
-            return null; // No workouts available
-        }
-    
-        
-    }    
+            document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
+            document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
+            document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
+        }    
+    }
 
     function setExerciseLabels(label1, label2, label3) {
         document.querySelector('label[for="exercise1"]').textContent = `${label1} (kg):`;
