@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const workoutLog = document.getElementById('workoutLog');
 
     setExerciseLabels('Squat', 'Bench Press', 'Barbell Row');
+    getLatestWorkoutValues();
 
     workoutForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //    ['Squat', 'Overhead Press', 'Deadlift'];
 
         logWorkout(selectedWorkout, exercise1Name, exercise2Name, exercise3Name, exercise1, exercise2, exercise3);
-
+        getLatestWorkoutValues();
         // Clear form inputs
         exercise1Input.value = '';
         exercise2Input.value = '';
@@ -99,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
             workoutItem.classList.add('workout-item');
             workoutItem.innerHTML = `
                 <strong>Workout:</strong> ${workout.workout}<br>
-                <strong>Exercises:</strong><br>
                 - ${workout.exercise1Name} : ${workout.exercise1} kg<br>
                 - ${workout.exercise2Name} : ${workout.exercise2} kg<br>
                 - ${workout.exercise3Name} : ${workout.exercise3} kg<br>
@@ -109,6 +109,40 @@ document.addEventListener('DOMContentLoaded', function() {
             workoutLog.appendChild(workoutItem);
         });
     }
+
+    function getLatestWorkoutValues() {
+        const workouts = getWorkoutsFromStorage();
+        if (workouts.length > 0) {
+            const latestWorkout = workouts[workouts.length - 2]; // Haetaan viimeisin vastaava treeni
+            const workoutName = latestWorkout.workout;
+            const exercise1Name = latestWorkout.exercise1Name;
+            const exercise2Name = latestWorkout.exercise2Name;
+            const exercise3Name = latestWorkout.exercise3Name;
+            const exercise1 = latestWorkout.exercise1;
+            const exercise2 = latestWorkout.exercise2;
+            const exercise3 = latestWorkout.exercise3;
+            
+            document.querySelector('li[class="seuraavaTreeni1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
+            document.querySelector('li[class="seuraavaTreeni2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
+            document.querySelector('li[class="seuraavaTreeni3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
+
+            return {
+                workoutName,
+                exercise1Name,
+                exercise2Name,
+                exercise3Name,
+                exercise1,
+                exercise2,
+                exercise3
+
+                
+            };
+        } else {
+            return null; // No workouts available
+        }
+    
+        
+    }    
 
     function setExerciseLabels(label1, label2, label3) {
         document.querySelector('label[for="exercise1"]').textContent = `${label1} (kg):`;
