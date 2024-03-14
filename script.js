@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setExerciseLabels('Squat', 'Bench Press', 'Barbell Row'); // Initialisoidaan kentät treeni A:n mukaisiksi
     getLatestWorkoutValues(); // Haetaan lokitiedot menneistä treeneistä
-    displayWorkouts(); // Näytetään menneet treenit
 
     // Kun käyttäjä syöttää treeninsä tiedot ja painaa submit, tallennetaan treenin tiedot ja nollataan kentät
     workoutForm.addEventListener('submit', function(event) {
@@ -57,9 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Ladataan aiempien treenien tiedot localStoragesta
-    loadWorkouts();
-
     // Funktio tallentaa treenin tiedot localStorageen
     function logWorkout(workout, exercise1Name, exercise2Name, exercise3Name, exercise1, exercise2, exercise3) {
         const workoutData = {
@@ -77,37 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
         workouts.push(workoutData);
         localStorage.setItem('workouts', JSON.stringify(workouts));
 
-        displayWorkouts();
-    }
-
-    // Funktio lataa aiemmat treenit localStoragesta ja laittaa ne näkyviin
-    function loadWorkouts() {
-        const workouts = getWorkoutsFromStorage();
-        displayWorkouts();
     }
 
     function getWorkoutsFromStorage() {
         return JSON.parse(localStorage.getItem('workouts')) || [];
-    }
-
-    //Näytetään lista aiemmista treeneistä
-    function displayWorkouts() {
-        workoutLog.innerHTML = '';
-        const workouts = getWorkoutsFromStorage().reverse();
-
-        workouts.forEach(function(workout) {
-            const workoutItem = document.createElement('div');
-            workoutItem.classList.add('workout-item');
-            workoutItem.innerHTML = `
-                <strong>Workout:</strong> ${workout.workout}<br>
-                - ${workout.exercise1Name} : ${workout.exercise1} kg<br>
-                - ${workout.exercise2Name} : ${workout.exercise2} kg<br>
-                - ${workout.exercise3Name} : ${workout.exercise3} kg<br>
-                <span class="date">${workout.date}</span>
-                <p> </p>
-            `;
-            workoutLog.appendChild(workoutItem);
-        });
     }
 
     // Funktio laskee aiempien treenien perusteella millainen käyttäjän seuraava treeni pitäisi olla ja laittaa sen näkyviin
