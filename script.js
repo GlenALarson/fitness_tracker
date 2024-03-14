@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const exerciseFields = document.getElementById('exerciseFields');
     const workoutLog = document.getElementById('workoutLog');
 
-    setExerciseLabels('Squat', 'Bench Press', 'Barbell Row');
-    getLatestWorkoutValues();
-    displayWorkouts();
+    setExerciseLabels('Squat', 'Bench Press', 'Barbell Row'); // Initialisoidaan kentät treeni A:n mukaisiksi
+    getLatestWorkoutValues(); // Haetaan lokitiedot menneistä treeneistä
+    displayWorkouts(); // Näytetään menneet treenit
 
+    // Kun käyttäjä syöttää treeninsä tiedot ja painaa submit, tallennetaan treenin tiedot ja nollataan kentät
     workoutForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         exercise3Input.value = '';
     });
 
+    // Kun käyttäjä vaihtaa dropdown-valikon valintaa, treeniliikkeiden nimet vaihtuu
     workoutSelect.addEventListener('change', function() {
         const selectedWorkout = workoutSelect.value;
         if (selectedWorkout === 'workout A') {
@@ -55,9 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Load previous workouts from localStorage
+    // Ladataan aiempien treenien tiedot localStoragesta
     loadWorkouts();
 
+    // Funktio tallentaa treenin tiedot localStorageen
     function logWorkout(workout, exercise1Name, exercise2Name, exercise3Name, exercise1, exercise2, exercise3) {
         const workoutData = {
             workout,
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         displayWorkouts();
     }
 
+    // Funktio lataa aiemmat treenit localStoragesta ja laittaa ne näkyviin
     function loadWorkouts() {
         const workouts = getWorkoutsFromStorage();
         displayWorkouts();
@@ -106,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Funktio laskee aiempien treenien perusteella millainen käyttäjän seuraava treeni pitäisi olla ja laittaa sen näkyviin
     function getLatestWorkoutValues() {
         const workouts = getWorkoutsFromStorage();
         if (workouts.length > 0) {
@@ -126,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Funktio laittaa parametrien mukaiset treeniliikkeiden nimet lomakkeen kentille
     function setExerciseLabels(label1, label2, label3) {
         document.querySelector('label[for="exercise1"]').textContent = `${label1} (kg):`;
         document.querySelector('label[for="exercise2"]').textContent = `${label2} (kg):`;
