@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setExerciseLabels('Squat', 'Bench Press', 'Barbell Row');
     getLatestWorkoutValues();
+    displayWorkouts();
 
     workoutForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return JSON.parse(localStorage.getItem('workouts')) || [];
     }
 
+    //Näytetään lista aiemmista treeneistä
     function displayWorkouts() {
         workoutLog.innerHTML = '';
         const workouts = getWorkoutsFromStorage().reverse();
@@ -119,7 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
             document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
             document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
-        }    
+        } else {
+            console.log('No workouts available.');
+        }
     }
 
     function setExerciseLabels(label1, label2, label3) {
