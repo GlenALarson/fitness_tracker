@@ -7,6 +7,7 @@ const timerDisplay = document.getElementById('timer');
 const startStopButton = document.getElementById('startStopButton');
 const resetButton = document.getElementById('resetButton');
 
+// Funktio jolla käynnistetään tai pysäytetään ajastin
 function startStopTimer() {
     if (!timerRunning) {
         startTime = Date.now() - elapsedTime;
@@ -19,22 +20,26 @@ function startStopTimer() {
     timerRunning = !timerRunning;
 }
 
+// Funktio laskee kuluneen ajan ja välittää sen displayTime-funktioon
 function updateTimer() {
     const currentTime = Date.now();
     elapsedTime = currentTime - startTime;
     displayTime(elapsedTime);
 }
 
+// Funktio asettaa ajastimeen arvot
 function displayTime(time) {
     const minutes = Math.floor(time / 60000);
     const seconds = Math.floor((time % 60000) / 1000);
     timerDisplay.textContent = `${formatTime(minutes)}:${formatTime(seconds)}`;
 }
 
+// Funktio asettaa minuuttien ja sekuntien eteen nollan jos luku on alle 10
 function formatTime(time) {
     return time < 10 ? `0${time}` : time;
 }
 
+// Funktio palauttaa ajastimen alkuasentoon
 function resetTimer() {
     clearInterval(timerInterval);
     timerRunning = false;
