@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const exercise3Input = document.getElementById('exercise3');
 
         // Tallennetaan käyttäjän syöttämät painot muuttujiin
-        const exercise1 = parseInt(exercise1Input.value);
-        const exercise2 = parseInt(exercise2Input.value);
-        const exercise3 = parseInt(exercise3Input.value);
+        const exercise1 = parseFloat(exercise1Input.value);
+        const exercise2 = parseFloat(exercise2Input.value);
+        const exercise3 = parseFloat(exercise3Input.value);
 
         // Tarkistetaan että syötetyt arvot on numeroita
         if (isNaN(exercise1) || isNaN(exercise2) || isNaN(exercise3) || exercise1 <= 0 || exercise2 <= 0 || exercise3 <= 0) {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Funktio laskee aiempien treenien perusteella millainen käyttäjän seuraava treeni pitäisi olla ja laittaa sen näkyviin
     function getLatestWorkoutValues() {
         const workouts = getWorkoutsFromStorage();
-        if (workouts.length > 0) {
+        if (workouts.length > 1) {
             const latestWorkout = workouts[workouts.length - 2]; // Haetaan viimeisin vastaava treeni
             const workoutName = latestWorkout.workout;
             const exercise1Name = latestWorkout.exercise1Name;
@@ -108,9 +108,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
                 document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 5) + ' kg';
             }
-            
-        } else {
-            console.log('No workouts available.');
+        
+        // Ensimmäisen kahden treenin kohdalla localStoragessa ei vielä ole dataa jonka pohjalta määrittää seuraavia treenejä, sitä varten nämä else-lausekkeet    
+        } else if (workouts.length === 0) {
+            document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout A';
+            document.querySelector('li[class="nextWorkout1"]').textContent = 'Squat 20 kg';
+            document.querySelector('li[class="nextWorkout2"]').textContent = 'Bench Press 20 kg';
+            document.querySelector('li[class="nextWorkout3"]').textContent = 'Barbell Row 20 kg';
+        } else if (workouts.length === 1) {
+            document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout B';
+            document.querySelector('li[class="nextWorkout1"]').textContent = 'Squat 20 kg';
+            document.querySelector('li[class="nextWorkout2"]').textContent = 'Overhead Press 20 kg';
+            document.querySelector('li[class="nextWorkout3"]').textContent = 'Deadlift 20 kg';
         }
     }
 
