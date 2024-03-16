@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#workoutLog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.workout-item {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.workout-item strong {
+    font-weight: bold;
+}
+
+.workout-item .date {
+    font-style: italic;
+}

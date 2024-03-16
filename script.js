@@ -92,15 +92,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const exercise2 = latestWorkout.exercise2;
             const exercise3 = latestWorkout.exercise3;
             
-            document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
-            document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
-            document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
+            if (workoutName === 'workout A') {
+                document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout A';
+                document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
+                document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
+                document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
+            } else {
+                document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout B';
+                document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
+                document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
+                document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 5) + ' kg';
+            }
+            
         } else {
             console.log('No workouts available.');
         }
     }
 
-    // Funktio laittaa parametrien mukaiset treeniliikkeiden nimet lomakkeen kentille
+    // Funktio asettaa parametrien mukaiset treeniliikkeiden nimet lomakkeen kentille
     function setExerciseLabels(label1, label2, label3) {
         document.querySelector('label[for="exercise1"]').textContent = `${label1} (kg):`;
         document.querySelector('label[for="exercise2"]').textContent = `${label2} (kg):`;
