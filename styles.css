@@ -21,6 +21,10 @@ h1 {
     color: #333;
 }
 
+h2 {
+    text-align: center;
+}
+
 #timer {
     text-align: center;
     font-size: 24px;
@@ -65,6 +69,10 @@ form {
     margin-bottom: 5px;
 }
 
+.nextWorkout p {
+    font-weight: bold;
+}
+
 #workoutSelect {
     display: block;
     width: 100%;
@@ -98,14 +106,12 @@ form {
         display: flex;
         justify-content: space-around;
         align-items: flex-start;
-        background-color: burlywood;
         height: 80vh;
         align-items: center;
     }
 
     #workoutForm {
         width: 45%;
-        background-color: aquamarine;
         height: 75%;
         display: flex;
         flex-direction: column;
@@ -115,7 +121,6 @@ form {
     .timer {
         display: flex;
         flex-direction: column;
-        background-color: yellow;
         height: 75%;
         width: 45%;
         justify-content: space-evenly;

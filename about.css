@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    margin: 10px;
+}
+
+.container p {
+    margin: 10px;
+}
+
+.container ul {
+    margin: 10px;
+    font-weight: bold;
+}
+
+li {
+    font-weight: normal;
+}
