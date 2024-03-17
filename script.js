@@ -99,12 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Yleensä treeneihin lisätään 2.5kg joka kerta mutta Workout B:ssä deadliftiin lisätään aina 5kg, siksi if-else -lauseke
             if (workoutName === 'workout A') {
                 document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout A';
-                document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
+                document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 5) + ' kg';
                 document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
                 document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 2.5) + ' kg';
             } else {
                 document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout B';
-                document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 2.5) + ' kg';
+                document.querySelector('li[class="nextWorkout1"]').textContent = exercise1Name + ' ' + (exercise1 + 5) + ' kg';
                 document.querySelector('li[class="nextWorkout2"]').textContent = exercise2Name + ' ' + (exercise2 + 2.5) + ' kg';
                 document.querySelector('li[class="nextWorkout3"]').textContent = exercise3Name + ' ' + (exercise3 + 5) + ' kg';
             }
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('li[class="nextWorkout3"]').textContent = 'Barbell Row 20 kg';
         } else if (workouts.length === 1) {
             document.querySelector('li[class="nextWorkoutType"]').textContent = 'Workout B';
-            document.querySelector('li[class="nextWorkout1"]').textContent = 'Squat 20 kg';
+            document.querySelector('li[class="nextWorkout1"]').textContent = 'Squat 22.5 kg';
             document.querySelector('li[class="nextWorkout2"]').textContent = 'Overhead Press 20 kg';
             document.querySelector('li[class="nextWorkout3"]').textContent = 'Deadlift 20 kg';
         }
