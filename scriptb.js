@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     displayWorkouts();
     
-    // Load previous workouts from localStorage
-
     function getWorkoutsFromStorage() {
         return JSON.parse(localStorage.getItem('workouts')) || [];
     }
